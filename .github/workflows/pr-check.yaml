@@ -15,19 +15,11 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v4
-#      - uses: actions/cache@v2
-#        with:
-#          path: |
-#            ~/.gradle/caches
-#            ~/.gradle/wrapper
-#          key: ${{ runner.os }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}   
-#      - name: Install Java 17
-#        run: |
-#          sudo apt update
-#          sudo apt install openjdk-17-jdk -y
-#          java -version
-#      - name: Make gradlew executable
-#        run: chmod +x gradlew
+      - uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: temurin          
+          cache: gradle
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v3
       - name: Execute Gradle Build
